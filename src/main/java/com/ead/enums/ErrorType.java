@@ -2,6 +2,7 @@ package com.ead.enums;
 
 public enum ErrorType {
 
+    METHOD_ARG_NOT_VALID_ERROR("Argumento ou valor(es) inválido(s)."),
     USER_NOT_FOUND("Usuário não encontrado."),
     LOGIN_IS_ALREADY_BEING_USED("Login já esta sendo usado por outro usuário."),
     PASSWORD_REQUIRED("Senha é obrigatório."),

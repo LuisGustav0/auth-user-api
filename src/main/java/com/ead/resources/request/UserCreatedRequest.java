@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
@@ -11,7 +12,7 @@ import javax.validation.constraints.Size;
 @Builder
 public class UserCreatedRequest {
 
-    @NotEmpty
+    @NotBlank
     @Size(min = 4, max = 50)
     private String login;
 
