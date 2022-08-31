@@ -6,9 +6,6 @@ import com.ead.model.filter.UserFilter;
 import com.ead.repositories.UserRepository;
 import com.ead.resources.response.PageUserResponse;
 import com.ead.resources.response.UserResponse;
-import com.ead.services.specifications.UserByEmailSpecification;
-import com.ead.services.specifications.UserByStatusESpecification;
-import com.ead.services.specifications.UserByTypeESpecification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,6 +17,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 import static com.ead.services.specifications.UserModelSpec.withEmailEquals;
+import static com.ead.services.specifications.UserModelSpec.withFullNameLike;
 import static com.ead.services.specifications.UserModelSpec.withStatusEquals;
 import static com.ead.services.specifications.UserModelSpec.withTypeEquals;
 
@@ -31,17 +29,48 @@ public class PageableUserService {
 
     private final UserRepository repository;
 
-    public PageUserResponse call(final UserFilter filter,
-                                 final @PageableDefault(sort = "id",
-                                                        direction = Sort.Direction.DESC) Pageable pageable) {
-//        var userByTypeE = new UserByTypeESpecification(filter.getTypeE());
+    //        var userByTypeE = new UserByTypeESpecification(filter.getTypeE());
 //        var userByStatusE = new UserByStatusESpecification(filter.getStatusE());
 //        var userByEmail = new UserByEmailSpecification(filter.getEmail());
 
 //        Specification<UserModel> spec = userByTypeE.or(userByStatusE).or(userByEmail);
 
-        Specification<UserModel> spec = withTypeEquals(filter.getTypeE())
-                .and(withStatusEquals(filter.getStatusE())).and(withEmailEquals(filter.getEmail()));
+//        Specification<UserModel> spec = withTypeEquals(filter.getTypeE())
+//                .and(withStatusEquals(filter.getStatusE())).and(withEmailEquals(filter.getEmail()));
+
+    private Specification<UserModel> getUserSpecification(UserFilter filter) {
+        Specification<UserModel> spec = null;
+
+        if (filter.isFullNameNotEmpty())
+            spec = withFullNameLike(filter.getFullName());
+
+        if (filter.isTypeNotNull())
+            if (spec != null)
+                spec.and(withTypeEquals(filter.getTypeE()));
+            else
+                spec = withTypeEquals(filter.getTypeE());
+
+        if (filter.isStatusNotNull()) {
+            if (spec != null)
+                spec.and(withStatusEquals(filter.getStatusE()));
+            else
+                spec = withStatusEquals(filter.getStatusE());
+        }
+
+        if (filter.isEmailNotEmpty()) {
+            if (spec != null)
+                spec.and(withEmailEquals(filter.getEmail()));
+            else
+                spec = withEmailEquals(filter.getEmail());
+        }
+
+        return spec;
+    }
+
+    public PageUserResponse call(final UserFilter filter,
+                                 final @PageableDefault(sort = "id",
+                                                        direction = Sort.Direction.DESC) Pageable pageable) {
+        final Specification<UserModel> spec = getUserSpecification(filter);
 
         Page<UserModel> pageUserModel = this.repository.findAll(spec, pageable);
 
