@@ -38,7 +38,6 @@ public class UserCreatedRequest {
     @Size(max = 20)
     private String cpf;
 
-    @NotEmpty
     @Size(max = 200)
     private String imageUrl;
 }
