@@ -38,7 +38,7 @@ public class PageableUserService {
 //        Specification<UserModel> spec = withTypeEquals(filter.getTypeE())
 //                .and(withStatusEquals(filter.getStatusE())).and(withEmailEquals(filter.getEmail()));
 
-    private Specification<UserModel> getUserSpecification(final UserFilter filter) {
+    private Specification<UserModel> getSpecification(final UserFilter filter) {
         Specification<UserModel> spec = null;
 
         if (filter.isFullNameNotEmpty())
@@ -70,7 +70,7 @@ public class PageableUserService {
     public PageUserResponse call(final UserFilter filter,
                                  final @PageableDefault(sort = "id",
                                                         direction = Sort.Direction.DESC) Pageable pageable) {
-        final Specification<UserModel> spec = getUserSpecification(filter);
+        final Specification<UserModel> spec = this.getSpecification(filter);
 
         Page<UserModel> pageUserModel = this.repository.findAll(spec, pageable);
 

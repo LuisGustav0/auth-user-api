@@ -18,7 +18,7 @@ public class PageableUserResource {
     private final PageableUserService service;
 
     @GetMapping("/users")
-    public ResponseEntity<PageUserResponse> getListUser(final UserFilter filter, final Pageable pageable) {
+    public ResponseEntity<PageUserResponse> call(final UserFilter filter, final Pageable pageable) {
         final PageUserResponse response = this.service.call(filter, pageable);
 
         return ResponseEntity.ok(response);

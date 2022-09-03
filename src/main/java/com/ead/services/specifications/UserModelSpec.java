@@ -8,7 +8,10 @@ import org.springframework.data.jpa.domain.Specification;
 public class UserModelSpec {
 
     public static Specification<UserModel> withFullNameLike(final String fullName) {
-        return ((root, query, builder) -> builder.equal(root.get("fullName"), "%" + fullName + "%"));
+        return ((root, query, builder) -> builder.like(
+                builder.lower(root.get("fullName")),
+                builder.lower(builder.literal("%" + fullName + "%"))
+        ));
     }
 
     public static Specification<UserModel> withTypeEquals(final UserTypeE typeE) {
