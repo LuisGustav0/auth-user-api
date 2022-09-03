@@ -38,7 +38,7 @@ public class PageableUserService {
 //        Specification<UserModel> spec = withTypeEquals(filter.getTypeE())
 //                .and(withStatusEquals(filter.getStatusE())).and(withEmailEquals(filter.getEmail()));
 
-    private Specification<UserModel> getUserSpecification(UserFilter filter) {
+    private Specification<UserModel> getUserSpecification(final UserFilter filter) {
         Specification<UserModel> spec = null;
 
         if (filter.isFullNameNotEmpty())
