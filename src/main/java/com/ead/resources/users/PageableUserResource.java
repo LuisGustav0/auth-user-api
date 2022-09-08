@@ -5,6 +5,8 @@ import com.ead.resources.response.PageUserResponse;
 import com.ead.services.PageableUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +21,10 @@ public class PageableUserResource {
 
     @GetMapping("/users")
     public ResponseEntity<PageUserResponse> call(final UserFilter filter,
-                                                 final Pageable pageable) {
+                                                 final @PageableDefault(
+                                                         sort = "createdAt",
+                                                         direction = Sort.Direction.DESC
+                                                 ) Pageable pageable) {
         final PageUserResponse response = this.service.call(filter, pageable);
 
         return ResponseEntity.ok(response);

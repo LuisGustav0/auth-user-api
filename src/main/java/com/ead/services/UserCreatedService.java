@@ -36,8 +36,10 @@ public class UserCreatedService {
 
         final UserModel userModel = this.requestAssembler.toUserActiveAndStudent(request);
 
-        final UserModel userModelSave = this.repository.save(userModel);
+        final UserModel userModelSaved = this.repository.save(userModel);
 
-        return this.userModelAssembler.toResponse(userModelSave);
+        log.debug("UserCreatedService.call User saved: {}", userModelSaved);
+
+        return this.userModelAssembler.toResponse(userModelSaved);
     }
 }

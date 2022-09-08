@@ -39,10 +39,7 @@ public class PageableUserService {
     }
 
     public PageUserResponse call(final UserFilter filter,
-                                 final @PageableDefault(
-                                         sort = "id",
-                                         direction = Sort.Direction.DESC
-                                 ) Pageable pageable) {
+                                 final Pageable pageable) {
         final Specification<UserModel> spec = this.getSpecification(filter);
 
         final Page<UserModel> pageUserModel = this.repository.findAll(spec, pageable);
