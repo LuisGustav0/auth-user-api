@@ -20,6 +20,7 @@ import static com.ead.services.specifications.UserModelSpec.withEmailEquals;
 import static com.ead.services.specifications.UserModelSpec.withFullNameLike;
 import static com.ead.services.specifications.UserModelSpec.withStatusEquals;
 import static com.ead.services.specifications.UserModelSpec.withTypeEquals;
+import static com.ead.services.specifications.UserModelSpec.withUserCourseId;
 
 @Service
 @RequiredArgsConstructor
@@ -29,52 +30,24 @@ public class PageableUserService {
 
     private final UserRepository repository;
 
-    //        var userByTypeE = new UserByTypeESpecification(filter.getTypeE());
-//        var userByStatusE = new UserByStatusESpecification(filter.getStatusE());
-//        var userByEmail = new UserByEmailSpecification(filter.getEmail());
-
-//        Specification<UserModel> spec = userByTypeE.or(userByStatusE).or(userByEmail);
-
-//        Specification<UserModel> spec = withTypeEquals(filter.getTypeE())
-//                .and(withStatusEquals(filter.getStatusE())).and(withEmailEquals(filter.getEmail()));
-
     private Specification<UserModel> getSpecification(final UserFilter filter) {
-        Specification<UserModel> spec = null;
-
-        if (filter.isFullNameNotEmpty())
-            spec = withFullNameLike(filter.getFullName());
-
-        if (filter.isTypeNotNull())
-            if (spec != null)
-                spec.and(withTypeEquals(filter.getTypeE()));
-            else
-                spec = withTypeEquals(filter.getTypeE());
-
-        if (filter.isStatusNotNull()) {
-            if (spec != null)
-                spec.and(withStatusEquals(filter.getStatusE()));
-            else
-                spec = withStatusEquals(filter.getStatusE());
-        }
-
-        if (filter.isEmailNotEmpty()) {
-            if (spec != null)
-                spec.and(withEmailEquals(filter.getEmail()));
-            else
-                spec = withEmailEquals(filter.getEmail());
-        }
-
-        return spec;
+        return withFullNameLike(filter.getFullName())
+                .and(withTypeEquals(filter.getTypeE()))
+                .and(withStatusEquals(filter.getStatusE()))
+                .and(withEmailEquals(filter.getEmail()))
+                .and(withUserCourseId(filter.getCourseId()));
     }
 
     public PageUserResponse call(final UserFilter filter,
-                                 final @PageableDefault(sort = "id",
-                                                        direction = Sort.Direction.DESC) Pageable pageable) {
+                                 final @PageableDefault(
+                                         sort = "id",
+                                         direction = Sort.Direction.DESC
+                                 ) Pageable pageable) {
         final Specification<UserModel> spec = this.getSpecification(filter);
 
-        Page<UserModel> pageUserModel = this.repository.findAll(spec, pageable);
+        final Page<UserModel> pageUserModel = this.repository.findAll(spec, pageable);
 
-        List<UserResponse> listUser = this.userModelAssembler.toListResponse(pageUserModel.getContent());
+        final List<UserResponse> listUser = this.userModelAssembler.toListResponse(pageUserModel.getContent());
 
         final int pageNumber = pageUserModel.getPageable().getPageNumber();
         final int pageSize = pageUserModel.getPageable().getPageSize();
