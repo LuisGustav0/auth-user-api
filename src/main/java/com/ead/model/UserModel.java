@@ -13,6 +13,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Set;
 import java.util.UUID;
 
 @Data
@@ -56,6 +57,9 @@ public class UserModel implements Serializable {
 
     @Column(length = 200)
     private String imageUrl;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private Set<UserCourseModel> listCourse;
 
     @CreationTimestamp
     private LocalDateTime createdAt;

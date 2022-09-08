@@ -2,6 +2,7 @@ server:
   port: 8087
 
 spring:
+  # Banco de dados
   datasource:
     url: jdbc:postgresql://localhost:5432/db_ead_auth_user
     username: postgres
@@ -12,3 +13,10 @@ spring:
     properties:
       hibernate:
         show_sql: true
+# Log
+logging:
+  level:
+    com.ead: TRACE
+    root: INFO
+    org.springframework.web: DEBUG
+    org.hibernate: INFO

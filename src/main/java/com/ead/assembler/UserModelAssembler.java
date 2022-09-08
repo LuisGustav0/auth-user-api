@@ -1,7 +1,7 @@
 package com.ead.assembler;
 
 import com.ead.model.UserModel;
-import com.ead.resources.UserByIdResource;
+import com.ead.resources.users.UserByIdResource;
 import com.ead.resources.response.UserResponse;
 import org.springframework.stereotype.Component;
 

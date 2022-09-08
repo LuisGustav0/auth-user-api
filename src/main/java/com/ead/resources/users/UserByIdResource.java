@@ -1,4 +1,4 @@
-package com.ead.resources;
+package com.ead.resources.users;
 
 import com.ead.resources.response.UserResponse;
 import com.ead.services.UserByIdService;

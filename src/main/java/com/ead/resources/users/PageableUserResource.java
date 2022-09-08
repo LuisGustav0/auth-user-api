@@ -1,4 +1,4 @@
-package com.ead.resources;
+package com.ead.resources.users;
 
 import com.ead.model.filter.UserFilter;
 import com.ead.resources.response.PageUserResponse;
