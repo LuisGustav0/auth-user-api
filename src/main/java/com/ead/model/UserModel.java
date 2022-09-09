@@ -67,4 +67,8 @@ public class UserModel implements Serializable {
 
     @UpdateTimestamp
     private OffsetDateTime updatedAt;
+
+    public boolean isBlocked() {
+        return UserStatusE.BLOCKED.equals(statusE);
+    }
 }

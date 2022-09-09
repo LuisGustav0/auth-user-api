@@ -6,6 +6,10 @@ import com.ead.exceptions.EmailIsAlreadyBeingUsedException;
 import com.ead.exceptions.LoginIsAlreadyBeingUsedException;
 import com.ead.exceptions.PasswordDifferentConfirmPasswordException;
 import com.ead.exceptions.PasswordRequiredException;
+import com.ead.exceptions.ServiceCourseUnavailableException;
+import com.ead.exceptions.SubscriptionUserAndCourseExistsException;
+import com.ead.exceptions.UnexpectedErrorException;
+import com.ead.exceptions.UserBlockedException;
 import com.ead.exceptions.UserNotFoundException;
 import com.ead.factory.HttpErrorResponseFactory;
 import com.ead.model.http.HttpErrorResponse;
@@ -49,12 +53,39 @@ public class HttpExceptionHandler extends ResponseEntityExceptionHandler {
                 .body(httpErrorResponse);
     }
 
+    @ExceptionHandler(ServiceCourseUnavailableException.class)
+    public ResponseEntity<HttpErrorResponse> handleServiceCourseUnavailableException(ServiceCourseUnavailableException ex) {
+        logger.error(ex.getMessage());
+
+        return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(HttpErrorResponseFactory.build(ex.getErrorCode(), ex.getMessage()));
+    }
+
+    @ExceptionHandler(UnexpectedErrorException.class)
+    public ResponseEntity<HttpErrorResponse> handleUnexpectedErrorException(UnexpectedErrorException ex) {
+        logger.error(ex.getMessage());
+
+        return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(HttpErrorResponseFactory.build(ex.getErrorCode(), ex.getMessage()));
+    }
+
     @ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<HttpErrorResponse> handleUserNotFoundException(UserNotFoundException ex) {
         logger.error(ex.getMessage());
 
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
+                .body(HttpErrorResponseFactory.build(ex.getErrorCode(), ex.getMessage()));
+    }
+
+    @ExceptionHandler(UserBlockedException.class)
+    public ResponseEntity<HttpErrorResponse> handleUserBlockedException(UserBlockedException ex) {
+        logger.error(ex.getMessage());
+
+        return ResponseEntity
+                .status(HttpStatus.CONFLICT)
                 .body(HttpErrorResponseFactory.build(ex.getErrorCode(), ex.getMessage()));
     }
 
@@ -96,6 +127,15 @@ public class HttpExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(PasswordDifferentConfirmPasswordException.class)
     public ResponseEntity<HttpErrorResponse> handlePasswordDifferentConfirmPasswordException(PasswordDifferentConfirmPasswordException ex) {
+        logger.error(ex.getMessage());
+
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(HttpErrorResponseFactory.build(ex.getErrorCode(), ex.getMessage()));
+    }
+
+    @ExceptionHandler(SubscriptionUserAndCourseExistsException.class)
+    public ResponseEntity<HttpErrorResponse> handleSubscriptionUserAndCourseExistsException(SubscriptionUserAndCourseExistsException ex) {
         logger.error(ex.getMessage());
 
         return ResponseEntity

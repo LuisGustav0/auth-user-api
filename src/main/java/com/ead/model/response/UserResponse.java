@@ -2,6 +2,7 @@ package com.ead.model.response;
 
 import com.ead.enums.UserStatusE;
 import com.ead.enums.UserTypeE;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,6 +18,7 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserResponse extends RepresentationModel<UserResponse> {
 
     private UUID id;

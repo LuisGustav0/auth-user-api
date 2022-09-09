@@ -1,9 +1,9 @@
-package com.ead.services;
+package com.ead.services.usercourse;
 
 import com.ead.assembler.PageableCourseResponseAssembler;
-import com.ead.clients.PageableCourseClientApi;
+import com.ead.clients.courseapi.PageableCourseClientApi;
 import com.ead.model.response.PageableCourseResponse;
-import com.ead.model.response.PageableUserCourseResponse;
+import com.ead.model.response.usercourse.PageableUserCourseResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;

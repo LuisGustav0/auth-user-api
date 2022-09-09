@@ -33,4 +33,9 @@ public class UserCourseModel implements Serializable {
 
     @Column(nullable = false)
     private UUID courseId;
+
+    public UserCourseModel(UserModel user, UUID courseId) {
+        this.user = user;
+        this.courseId = courseId;
+    }
 }

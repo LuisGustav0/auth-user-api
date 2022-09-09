@@ -15,7 +15,6 @@ public class UserByIdOrElseThrowService {
     private final UserRepository repository;
 
     public UserModel call(final UUID id) {
-        return this.repository.findById(id)
-                              .orElseThrow(UserNotFoundException::new);
+        return this.repository.findById(id).orElseThrow(UserNotFoundException::new);
     }
 }

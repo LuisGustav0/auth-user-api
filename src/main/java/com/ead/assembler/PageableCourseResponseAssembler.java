@@ -1,7 +1,7 @@
 package com.ead.assembler;
 
 import com.ead.model.response.PageableCourseResponse;
-import com.ead.model.response.PageableUserCourseResponse;
+import com.ead.model.response.usercourse.PageableUserCourseResponse;
 import org.springframework.stereotype.Component;
 
 @Component

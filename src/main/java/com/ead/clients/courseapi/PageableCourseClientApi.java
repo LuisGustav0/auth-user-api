@@ -1,4 +1,4 @@
-package com.ead.clients;
+package com.ead.clients.courseapi;
 
 import com.ead.model.response.PageableCourseResponse;
 import lombok.RequiredArgsConstructor;
@@ -25,10 +25,10 @@ public class PageableCourseClientApi {
     private final RestTemplate restTemplate;
 
     @Value("${ead.api.url.auth-user}")
-    private static String REQUEST_URI;
+    private String REQUEST_URI;
 
     @Value("${ead.api.path.courses}")
-    private static String PATH_COURSES;
+    private String PATH_COURSES;
 
     private String getUrlTemplate() {
         return UriComponentsBuilder.fromHttpUrl(REQUEST_URI)

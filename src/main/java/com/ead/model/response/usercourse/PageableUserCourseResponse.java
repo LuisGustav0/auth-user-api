@@ -1,5 +1,6 @@
-package com.ead.model.response;
+package com.ead.model.response.usercourse;
 
+import com.ead.model.response.CourseResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
