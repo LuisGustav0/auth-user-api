@@ -1,8 +1,7 @@
-package com.ead.resources.response;
+package com.ead.model.response;
 
 import com.ead.enums.UserStatusE;
 import com.ead.enums.UserTypeE;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,7 +9,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.hateoas.RepresentationModel;
 
-import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 

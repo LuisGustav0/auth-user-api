@@ -1,5 +1,6 @@
-package com.ead.services.specifications;
+package com.ead.specifications;
 
+import com.ead.enums.UserStatusE;
 import com.ead.model.UserModel;
 import lombok.AllArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
@@ -10,14 +11,14 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 @AllArgsConstructor
-public class UserByEmailSpecification implements Specification<UserModel> {
+public class UserByStatusESpecification implements Specification<UserModel> {
 
-    private String email;
+    private UserStatusE statusE;
 
     @Override
     public Predicate toPredicate(Root<UserModel> root,
                                  CriteriaQuery<?> query,
                                  CriteriaBuilder builder) {
-        return builder.equal(root.get("email"), email);
+        return builder.equal(root.get("statusE"), statusE);
     }
 }

@@ -3,8 +3,8 @@ package com.ead.services;
 import com.ead.assembler.UserModelAssembler;
 import com.ead.model.UserModel;
 import com.ead.repositories.UserRepository;
-import com.ead.resources.request.UserUpdateImageRequest;
-import com.ead.resources.response.UserResponse;
+import com.ead.model.request.UserUpdateImageRequest;
+import com.ead.model.response.UserResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

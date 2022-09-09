@@ -1,4 +1,4 @@
-package com.ead.resources.response;
+package com.ead.model.response;
 
 import com.ead.enums.CourseLevelE;
 import com.ead.enums.CourseStatusE;

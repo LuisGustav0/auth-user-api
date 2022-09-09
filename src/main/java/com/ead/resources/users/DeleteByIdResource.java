@@ -1,6 +1,6 @@
 package com.ead.resources.users;
 
-import com.ead.resources.response.DeleteUserResponse;
+import com.ead.model.response.DeleteUserResponse;
 import com.ead.services.DeleteByIdService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

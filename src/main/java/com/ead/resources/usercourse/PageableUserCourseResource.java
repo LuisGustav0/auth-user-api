@@ -1,6 +1,6 @@
 package com.ead.resources.usercourse;
 
-import com.ead.resources.response.PageableUserCourseResponse;
+import com.ead.model.response.PageableUserCourseResponse;
 import com.ead.services.PageableUserCourseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;

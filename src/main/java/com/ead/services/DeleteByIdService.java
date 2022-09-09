@@ -2,7 +2,7 @@ package com.ead.services;
 
 import com.ead.model.UserModel;
 import com.ead.repositories.UserRepository;
-import com.ead.resources.response.DeleteUserResponse;
+import com.ead.model.response.DeleteUserResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

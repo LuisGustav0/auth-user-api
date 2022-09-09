@@ -1,6 +1,6 @@
 package com.ead.clients;
 
-import com.ead.resources.response.PageableCourseResponse;
+import com.ead.model.response.PageableCourseResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;

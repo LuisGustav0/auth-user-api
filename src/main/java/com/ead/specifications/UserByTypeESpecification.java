@@ -1,6 +1,5 @@
-package com.ead.services.specifications;
+package com.ead.specifications;
 
-import com.ead.enums.UserStatusE;
 import com.ead.enums.UserTypeE;
 import com.ead.model.UserModel;
 import lombok.AllArgsConstructor;
@@ -12,14 +11,14 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 @AllArgsConstructor
-public class UserByStatusESpecification implements Specification<UserModel> {
+public class UserByTypeESpecification implements Specification<UserModel> {
 
-    private UserStatusE statusE;
+    private UserTypeE typeE;
 
     @Override
     public Predicate toPredicate(Root<UserModel> root,
                                  CriteriaQuery<?> query,
                                  CriteriaBuilder builder) {
-        return builder.equal(root.get("statusE"), statusE);
+        return builder.equal(root.get("typeE"), typeE);
     }
 }

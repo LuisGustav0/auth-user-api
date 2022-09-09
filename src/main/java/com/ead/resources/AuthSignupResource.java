@@ -1,7 +1,7 @@
 package com.ead.resources;
 
-import com.ead.resources.request.UserCreatedRequest;
-import com.ead.resources.response.UserResponse;
+import com.ead.model.request.UserCreatedRequest;
+import com.ead.model.response.UserResponse;
 import com.ead.services.UserCreatedService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;

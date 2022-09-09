@@ -1,4 +1,4 @@
-package com.ead.resources.request;
+package com.ead.model.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

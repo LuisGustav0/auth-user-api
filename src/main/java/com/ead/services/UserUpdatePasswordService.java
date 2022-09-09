@@ -2,8 +2,8 @@ package com.ead.services;
 
 import com.ead.model.UserModel;
 import com.ead.repositories.UserRepository;
-import com.ead.resources.request.UserUpdatePasswordRequest;
-import com.ead.resources.response.UserUpdatePasswordResponse;
+import com.ead.model.request.UserUpdatePasswordRequest;
+import com.ead.model.response.UserUpdatePasswordResponse;
 import com.ead.validations.PasswordAndConfirmDifferentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

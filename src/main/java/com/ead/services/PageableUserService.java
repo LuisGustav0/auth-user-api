@@ -4,8 +4,8 @@ import com.ead.assembler.UserModelAssembler;
 import com.ead.model.UserModel;
 import com.ead.model.filter.UserFilter;
 import com.ead.repositories.UserRepository;
-import com.ead.resources.response.PageUserResponse;
-import com.ead.resources.response.UserResponse;
+import com.ead.model.response.PageUserResponse;
+import com.ead.model.response.UserResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,11 +14,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static com.ead.services.specifications.UserModelSpec.withEmailEquals;
-import static com.ead.services.specifications.UserModelSpec.withFullNameLike;
-import static com.ead.services.specifications.UserModelSpec.withStatusEquals;
-import static com.ead.services.specifications.UserModelSpec.withTypeEquals;
-import static com.ead.services.specifications.UserModelSpec.withUserCourseId;
+import static com.ead.specifications.UserModelSpec.withEmailEquals;
+import static com.ead.specifications.UserModelSpec.withFullNameLike;
+import static com.ead.specifications.UserModelSpec.withStatusEquals;
+import static com.ead.specifications.UserModelSpec.withTypeEquals;
+import static com.ead.specifications.UserModelSpec.withUserCourseId;
 
 @Service
 @RequiredArgsConstructor

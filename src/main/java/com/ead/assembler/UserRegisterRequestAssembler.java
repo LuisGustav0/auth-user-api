@@ -3,7 +3,7 @@ package com.ead.assembler;
 import com.ead.enums.UserStatusE;
 import com.ead.enums.UserTypeE;
 import com.ead.model.UserModel;
-import com.ead.resources.request.UserCreatedRequest;
+import com.ead.model.request.UserCreatedRequest;
 import org.springframework.stereotype.Component;
 
 @Component

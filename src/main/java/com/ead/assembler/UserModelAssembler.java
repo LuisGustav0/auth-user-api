@@ -1,12 +1,11 @@
 package com.ead.assembler;
 
 import com.ead.model.UserModel;
+import com.ead.model.response.UserResponse;
 import com.ead.resources.users.UserByIdResource;
-import com.ead.resources.response.UserResponse;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;

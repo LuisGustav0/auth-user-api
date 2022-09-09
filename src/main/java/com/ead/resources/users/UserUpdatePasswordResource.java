@@ -1,7 +1,7 @@
 package com.ead.resources.users;
 
-import com.ead.resources.request.UserUpdatePasswordRequest;
-import com.ead.resources.response.UserUpdatePasswordResponse;
+import com.ead.model.request.UserUpdatePasswordRequest;
+import com.ead.model.response.UserUpdatePasswordResponse;
 import com.ead.services.UserUpdatePasswordService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

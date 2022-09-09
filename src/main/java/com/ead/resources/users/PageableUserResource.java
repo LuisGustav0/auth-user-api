@@ -1,7 +1,7 @@
 package com.ead.resources.users;
 
 import com.ead.model.filter.UserFilter;
-import com.ead.resources.response.PageUserResponse;
+import com.ead.model.response.PageUserResponse;
 import com.ead.services.PageableUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;

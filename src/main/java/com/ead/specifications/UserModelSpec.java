@@ -1,4 +1,4 @@
-package com.ead.services.specifications;
+package com.ead.specifications;
 
 import com.ead.enums.UserStatusE;
 import com.ead.enums.UserTypeE;

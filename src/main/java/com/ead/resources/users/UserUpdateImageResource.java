@@ -1,7 +1,7 @@
 package com.ead.resources.users;
 
-import com.ead.resources.request.UserUpdateImageRequest;
-import com.ead.resources.response.UserResponse;
+import com.ead.model.request.UserUpdateImageRequest;
+import com.ead.model.response.UserResponse;
 import com.ead.services.UserUpdateImageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
