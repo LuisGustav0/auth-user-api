@@ -27,7 +27,7 @@ public class PageableCourseClientApi {
     @Value("${ead.api.url.auth-user}")
     private static String REQUEST_URI;
 
-    @Value("${ead.api.url.auth-user.path-courses}")
+    @Value("${ead.api.path.courses}")
     private static String PATH_COURSES;
 
     private String getUrlTemplate() {

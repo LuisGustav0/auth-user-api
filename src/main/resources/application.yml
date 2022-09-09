@@ -25,4 +25,5 @@ ead:
   api:
     url:
       auth-user: http://localhost:8082
-        path-courses: /courses
+    path:
+      courses: /courses
