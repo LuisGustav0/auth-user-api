@@ -1,9 +1,9 @@
 package com.ead.clients;
 
 import com.ead.resources.response.PageableCourseResponse;
-import com.ead.resources.response.PageableUserCourseResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpMethod;
@@ -24,8 +24,11 @@ public class PageableCourseClientApi {
 
     private final RestTemplate restTemplate;
 
-    private static final String REQUEST_URI = "http://localhost:8082";
-    private static final String PATH_COURSES = "/courses";
+    @Value("${ead.api.url.auth-user}")
+    private static String REQUEST_URI;
+
+    @Value("${ead.api.url.auth-user.path-courses}")
+    private static String PATH_COURSES;
 
     private String getUrlTemplate() {
         return UriComponentsBuilder.fromHttpUrl(REQUEST_URI)

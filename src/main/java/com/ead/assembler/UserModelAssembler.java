@@ -35,8 +35,6 @@ public class UserModelAssembler {
     }
 
     public List<UserResponse> toListResponse(final List<UserModel> listUserModel) {
-        return listUserModel.stream()
-                            .map(this::toResponse)
-                            .collect(Collectors.toList());
+        return listUserModel.stream().map(this::toResponse).toList();
     }
 }

@@ -24,6 +24,5 @@ public class CourseResponse {
     private UUID userInstructorId;
 
     private OffsetDateTime createdAt;
-
     private OffsetDateTime updatedAt;
 }
