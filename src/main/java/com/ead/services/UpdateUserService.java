@@ -12,7 +12,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class UserUpdateService {
+public class UpdateUserService {
 
     private final UserModelAssembler assembler;
 

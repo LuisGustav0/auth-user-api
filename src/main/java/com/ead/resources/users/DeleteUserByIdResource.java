@@ -1,7 +1,7 @@
 package com.ead.resources.users;
 
 import com.ead.model.response.DeleteUserResponse;
-import com.ead.services.DeleteByIdService;
+import com.ead.services.DeleteUserByIdService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,9 +14,9 @@ import java.util.UUID;
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*", maxAge = 3600)
-public class DeleteByIdResource {
+public class DeleteUserByIdResource {
 
-    private final DeleteByIdService service;
+    private final DeleteUserByIdService service;
 
     @DeleteMapping("/users/{id}")
     public ResponseEntity<DeleteUserResponse> deleteById(@PathVariable UUID id) {

@@ -2,7 +2,7 @@ package com.ead.resources;
 
 import com.ead.model.request.UserCreatedRequest;
 import com.ead.model.response.UserResponse;
-import com.ead.services.UserCreatedService;
+import com.ead.services.CreateUserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
@@ -20,7 +20,7 @@ import javax.validation.Valid;
 @CrossOrigin(origins = "*", maxAge = 3600)
 public class AuthSignupResource {
 
-    private final UserCreatedService service;
+    private final CreateUserService service;
 
     @PostMapping("/auth/signup")
     public ResponseEntity<UserResponse> call(@RequestBody @Valid UserCreatedRequest request) {

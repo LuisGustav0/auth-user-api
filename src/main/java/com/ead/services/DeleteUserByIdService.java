@@ -10,7 +10,7 @@ import java.util.UUID;
 
 @Repository
 @RequiredArgsConstructor
-public class DeleteByIdService {
+public class DeleteUserByIdService {
 
     private final UserRepository repository;
 

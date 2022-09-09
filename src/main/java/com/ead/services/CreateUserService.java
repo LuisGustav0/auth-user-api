@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 @Log4j2
 @Service
 @RequiredArgsConstructor
-public class UserCreatedService {
+public class CreateUserService {
 
     private final UserModelAssembler userModelAssembler;
     private final UserRegisterRequestAssembler requestAssembler;
