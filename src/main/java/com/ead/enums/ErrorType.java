@@ -12,7 +12,8 @@ public enum ErrorType {
     CONFIRM_PASSWORD_REQUIRED("Confimação de senha é obrigatório."),
     PASSWORD_DIFFERENT_CONFIRM_PASSWORD_REQUIRED("Senha e confirmação de senha não são iguais."),
     EMAIL_IS_ALREADY_BEING_USED("E-Mail já esta sendo usado por outro usuário."),
-    SUBSCRIPTION_USER_COURSE_AND_EXISTS_ERROR("Inscrição do usuário ja existe nesse curso.");
+    SUBSCRIPTION_USER_COURSE_AND_EXISTS_ERROR("Inscrição do usuário ja existe nesse curso."),
+    USER_COURSE_BY_COURSE_ID_NOT_FOUND("Curso do usuario não encontrado.");
 
     private String error;
 

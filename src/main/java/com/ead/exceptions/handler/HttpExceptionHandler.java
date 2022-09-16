@@ -10,6 +10,7 @@ import com.ead.exceptions.ServiceCourseUnavailableException;
 import com.ead.exceptions.SubscriptionUserAndCourseExistsException;
 import com.ead.exceptions.UnexpectedErrorException;
 import com.ead.exceptions.UserBlockedException;
+import com.ead.exceptions.UserCourseByCourseIdNotFoundException;
 import com.ead.exceptions.UserNotFoundException;
 import com.ead.factory.HttpErrorResponseFactory;
 import com.ead.model.http.HttpErrorResponse;
@@ -140,6 +141,15 @@ public class HttpExceptionHandler extends ResponseEntityExceptionHandler {
 
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
+                .body(HttpErrorResponseFactory.build(ex.getErrorCode(), ex.getMessage()));
+    }
+
+    @ExceptionHandler(UserCourseByCourseIdNotFoundException.class)
+    public ResponseEntity<HttpErrorResponse> handleUserCourseByCourseIdNotFoundException(UserCourseByCourseIdNotFoundException ex) {
+        logger.error(ex.getMessage());
+
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
                 .body(HttpErrorResponseFactory.build(ex.getErrorCode(), ex.getMessage()));
     }
 }
