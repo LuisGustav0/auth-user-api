@@ -24,7 +24,7 @@ public class PageableCourseClientApi {
 
     private final RestTemplate restTemplate;
 
-    @Value("${ead.api.url.auth-user}")
+    @Value("${ead.api.url.courses}")
     private String REQUEST_URI;
 
     @Value("${ead.api.path.courses}")

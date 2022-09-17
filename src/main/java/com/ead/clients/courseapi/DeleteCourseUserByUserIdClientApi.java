@@ -2,12 +2,11 @@ package com.ead.clients.courseapi;
 
 import com.ead.exceptions.ServiceCourseUnavailableException;
 import com.ead.exceptions.UnexpectedErrorException;
-import com.ead.model.response.CourseResponse;
+import com.ead.model.response.courseuser.DeleteCourseUserResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpStatusCodeException;
@@ -19,7 +18,7 @@ import java.util.UUID;
 @Log4j2
 @Component
 @RequiredArgsConstructor
-public class CourseByIdOrElseThrowClientApi {
+public class DeleteCourseUserByUserIdClientApi {
 
     private final RestTemplate restTemplate;
 
@@ -29,35 +28,30 @@ public class CourseByIdOrElseThrowClientApi {
     @Value("${ead.api.path.courses}")
     private String PATH_COURSES;
 
-    private String getUrlTemplate(final UUID courseId) {
+    @Value("${ead.api.path.users}")
+    private String PATH_USERS;
+
+    private String getUrlTemplate(final UUID userId) {
         return UriComponentsBuilder.fromHttpUrl(REQUEST_URI)
-                                   .path(PATH_COURSES + "/")
-                                   .path("/" + courseId)
+                                   .path(PATH_COURSES)
+                                   .path(PATH_USERS)
+                                   .path("/" + userId)
                                    .encode()
                                    .toUriString();
     }
 
-    public CourseResponse call(final UUID userId) {
+    public DeleteCourseUserResponse call(final UUID userId) {
         try {
             final String url = this.getUrlTemplate(userId);
 
-            log.error("CourseByIdOrElseThrowClientApi.call URL: {}", url);
+            final ResponseEntity<DeleteCourseUserResponse> responseEntity =
+                    this.restTemplate.exchange(url, HttpMethod.DELETE, null, DeleteCourseUserResponse.class);
 
-            final ResponseEntity<CourseResponse> response =
-                    this.restTemplate.exchange(url, HttpMethod.GET, null, CourseResponse.class);
-
-            return response.getBody();
+            return responseEntity.getBody();
         } catch (HttpStatusCodeException ex) {
-            log.error("CourseByIdOrElseThrowClientApi.call Error", ex);
-
-            if (!ex.getStatusCode().equals(HttpStatus.NOT_FOUND))
-                throw new UnexpectedErrorException(ex);
+            throw new UnexpectedErrorException(ex);
         } catch (Exception ex) {
-            log.error("CourseByIdOrElseThrowClientApi.call Error", ex);
-
             throw new ServiceCourseUnavailableException(ex);
         }
-
-        return null;
     }
 }
