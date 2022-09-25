@@ -3,9 +3,9 @@ package com.ead.services;
 import com.ead.assembler.UserModelAssembler;
 import com.ead.model.UserModel;
 import com.ead.model.filter.UserFilter;
-import com.ead.repositories.UserRepository;
 import com.ead.model.response.PageUserResponse;
 import com.ead.model.response.UserResponse;
+import com.ead.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,7 +18,6 @@ import static com.ead.specifications.UserModelSpec.withEmailEquals;
 import static com.ead.specifications.UserModelSpec.withFullNameLike;
 import static com.ead.specifications.UserModelSpec.withStatusEquals;
 import static com.ead.specifications.UserModelSpec.withTypeEquals;
-import static com.ead.specifications.UserModelSpec.withUserCourseId;
 
 @Service
 @RequiredArgsConstructor
@@ -32,8 +31,7 @@ public class PageableUserService {
         return withFullNameLike(filter.getFullName())
                 .and(withTypeEquals(filter.getTypeE()))
                 .and(withStatusEquals(filter.getStatusE()))
-                .and(withEmailEquals(filter.getEmail()))
-                .and(withUserCourseId(filter.getCourseId()));
+                .and(withEmailEquals(filter.getEmail()));
     }
 
     public PageUserResponse call(final UserFilter filter,

@@ -18,8 +18,7 @@ public class PageableUserCourseService {
 
     private final PageableCourseResponseAssembler assembler;
 
-    public PageableUserCourseResponse call(final UUID userId,
-                                           final Pageable pageable) {
+    public PageableUserCourseResponse call(final UUID userId, final Pageable pageable) {
         final PageableCourseResponse response = this.pageableCourseClientApi.call(userId, pageable);
 
         return this.assembler.toResponse(response);

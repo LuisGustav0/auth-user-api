@@ -29,6 +29,6 @@ public class PageableUserCourseResource {
                                                            ) Pageable pageable) {
         final PageableUserCourseResponse response = this.service.call(userId, pageable);
 
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(null);
     }
 }

@@ -2,13 +2,9 @@ package com.ead.specifications;
 
 import com.ead.enums.UserStatusE;
 import com.ead.enums.UserTypeE;
-import com.ead.model.UserCourseModel;
 import com.ead.model.UserModel;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.jpa.domain.Specification;
-
-import javax.persistence.criteria.Join;
-import java.util.UUID;
 
 public class UserModelSpec {
 
@@ -51,19 +47,6 @@ public class UserModelSpec {
                     builder.lower(root.get("email")),
                     builder.lower(builder.literal(email))
             );
-        });
-    }
-
-    public static Specification<UserModel> withUserCourseId(final UUID courseId) {
-        return ((root, query, builder) -> {
-            if (courseId == null)
-                return builder.conjunction();
-
-            query.distinct(true);
-
-            Join<UserModel, UserCourseModel> userJoin = root.join("listCourse");
-
-            return builder.equal(userJoin.get("courseId"), courseId);
         });
     }
 }
