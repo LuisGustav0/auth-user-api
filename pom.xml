@@ -51,6 +51,12 @@
             <artifactId>spring-boot-starter-hateoas</artifactId>
         </dependency>
 
+        <!-- Spring Framework AMQP -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+
         <!-- Spring Cloud Netflix Eureka Client -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>

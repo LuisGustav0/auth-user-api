@@ -6,6 +6,8 @@ import com.ead.model.UserModel;
 import com.ead.model.request.UserCreatedRequest;
 import org.springframework.stereotype.Component;
 
+import java.time.OffsetDateTime;
+
 @Component
 public class UserRegisterRequestAssembler {
 
@@ -20,6 +22,8 @@ public class UserRegisterRequestAssembler {
                         .imageUrl(request.getImageUrl())
                         .statusE(UserStatusE.ACTIVE)
                         .typeE(UserTypeE.STUDENT)
+                        .createdAt(OffsetDateTime.now())
+                        .updatedAt(OffsetDateTime.now())
                         .build();
     }
 }

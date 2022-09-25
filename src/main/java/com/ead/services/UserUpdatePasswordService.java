@@ -8,6 +8,7 @@ import com.ead.validations.PasswordAndConfirmDifferentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.OffsetDateTime;
 import java.util.UUID;
 
 @Service
@@ -24,6 +25,7 @@ public class UserUpdatePasswordService {
         final UserModel userModel = this.service.call(id);
 
         userModel.setPassword(request.getPassword());
+        userModel.setUpdatedAt(OffsetDateTime.now());
 
         this.repository.save(userModel);
 

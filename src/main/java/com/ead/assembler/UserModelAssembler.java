@@ -1,6 +1,7 @@
 package com.ead.assembler;
 
 import com.ead.model.UserModel;
+import com.ead.model.request.UserEventRequest;
 import com.ead.model.response.UserResponse;
 import com.ead.resources.users.UserByIdResource;
 import org.springframework.stereotype.Component;
@@ -35,5 +36,21 @@ public class UserModelAssembler {
 
     public List<UserResponse> toListResponse(final List<UserModel> listUserModel) {
         return listUserModel.stream().map(this::toResponse).toList();
+    }
+
+    public UserEventRequest toUserEvent(final UserModel userModel) {
+        return UserEventRequest.builder()
+                               .id(userModel.getId())
+                               .login(userModel.getLogin())
+                               .email(userModel.getEmail())
+                               .fullName(userModel.getFullName())
+                               .statusE(userModel.getStatusE().name())
+                               .typeE(userModel.getTypeE().name())
+                               .phoneNumber(userModel.getPhoneNumber())
+                               .cpf(userModel.getCpf())
+                               .imageUrl(userModel.getImageUrl())
+                               .createdAt(userModel.getCreatedAt().toString())
+                               .updatedAt(userModel.getUpdatedAt().toString())
+                               .build();
     }
 }

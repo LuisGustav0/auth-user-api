@@ -2,12 +2,12 @@ package com.ead.services;
 
 import com.ead.assembler.UserModelAssembler;
 import com.ead.model.UserModel;
-import com.ead.repositories.UserRepository;
 import com.ead.model.request.UserUpdateRequest;
 import com.ead.model.response.UserResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.OffsetDateTime;
 import java.util.UUID;
 
 @Service
@@ -18,7 +18,7 @@ public class UpdateUserService {
 
     private final UserByIdOrElseThrowService service;
 
-    private final UserRepository repository;
+    private final UpdateUserAndPublisherService updateUserAndPublisherService;
 
     public UserResponse call(final UUID id, final UserUpdateRequest request) {
         final UserModel userModel = this.service.call(id);
@@ -26,8 +26,9 @@ public class UpdateUserService {
         userModel.setFullName(request.getFullName());
         userModel.setPhoneNumber(request.getPhoneNumber());
         userModel.setCpf(request.getCpf());
+        userModel.setUpdatedAt(OffsetDateTime.now());
 
-        final UserModel userModelUpdated = this.repository.save(userModel);
+        final UserModel userModelUpdated = this.updateUserAndPublisherService.call(userModel);
 
         return this.assembler.toResponse(userModelUpdated);
     }

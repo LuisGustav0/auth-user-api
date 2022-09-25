@@ -3,7 +3,6 @@ package com.ead.services;
 import com.ead.assembler.UserModelAssembler;
 import com.ead.assembler.UserRegisterRequestAssembler;
 import com.ead.model.UserModel;
-import com.ead.repositories.UserRepository;
 import com.ead.model.request.UserCreatedRequest;
 import com.ead.model.response.UserResponse;
 import com.ead.validations.ExistsByEmailService;
@@ -25,7 +24,7 @@ public class CreateUserService {
     private final ExistsByEmailService existsByEmailService;
     private final PasswordAndConfirmDifferentService passwordValidService;
 
-    private final UserRepository repository;
+   private final SaveUserAndPublisherService saveUserAndPublisherService;
 
     public UserResponse call(final UserCreatedRequest request) {
         log.debug("UserCreatedService.call Request: {}", request);
@@ -36,7 +35,7 @@ public class CreateUserService {
 
         final UserModel userModel = this.requestAssembler.toUserActiveAndStudent(request);
 
-        final UserModel userModelSaved = this.repository.save(userModel);
+        final UserModel userModelSaved = this.saveUserAndPublisherService.call(userModel);
 
         log.debug("UserCreatedService.call User saved: {}", userModelSaved);
 

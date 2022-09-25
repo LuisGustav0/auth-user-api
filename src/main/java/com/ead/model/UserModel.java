@@ -6,8 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -64,13 +62,9 @@ public class UserModel implements Serializable {
     @Column(length = 200)
     private String imageUrl;
 
-    @CreationTimestamp
+    @Column(nullable = false, updatable = false)
     private OffsetDateTime createdAt;
 
-    @UpdateTimestamp
+    @Column(nullable = false)
     private OffsetDateTime updatedAt;
-
-    public boolean isBlocked() {
-        return UserStatusE.BLOCKED.equals(statusE);
-    }
 }
