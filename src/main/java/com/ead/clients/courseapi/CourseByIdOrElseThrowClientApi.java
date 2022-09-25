@@ -24,14 +24,14 @@ public class CourseByIdOrElseThrowClientApi {
     private final RestTemplate restTemplate;
 
     @Value("${ead.api.url.courses}")
-    private String REQUEST_URI;
+    private String requestUri;
 
     @Value("${ead.api.path.courses}")
-    private String PATH_COURSES;
+    private String pathCourses;
 
     private String getUrlTemplate(final UUID courseId) {
-        return UriComponentsBuilder.fromHttpUrl(REQUEST_URI)
-                                   .path(PATH_COURSES + "/")
+        return UriComponentsBuilder.fromHttpUrl(requestUri)
+                                   .path(pathCourses + "/")
                                    .path("/" + courseId)
                                    .encode()
                                    .toUriString();

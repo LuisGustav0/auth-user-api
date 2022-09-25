@@ -8,6 +8,9 @@ import org.springframework.data.jpa.domain.Specification;
 
 public class UserModelSpec {
 
+    private UserModelSpec() {
+    }
+
     public static Specification<UserModel> withFullNameLike(final String fullName) {
         return ((root, query, builder) -> {
             if (StringUtils.isEmpty(fullName))
