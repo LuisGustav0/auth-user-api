@@ -51,11 +51,11 @@ public class CourseByIdOrElseThrowClientApi {
             log.error("CourseByIdOrElseThrowClientApi.call Error", ex);
 
             if (!ex.getStatusCode().equals(HttpStatus.NOT_FOUND))
-                throw new UnexpectedErrorException(ex);
+                throw new UnexpectedErrorException();
         } catch (Exception ex) {
             log.error("CourseByIdOrElseThrowClientApi.call Error", ex);
 
-            throw new ServiceCourseUnavailableException(ex);
+            throw new ServiceCourseUnavailableException();
         }
 
         return null;
