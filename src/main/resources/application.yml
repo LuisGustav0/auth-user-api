@@ -1,67 +1,9 @@
-server:
-  port: 8087
-  servlet:
-    context-path: '/ead-auth-user/'
-
 spring:
   application:
     name: ead-auth-user-api
-  # Banco de dados
-  datasource:
-    url: jdbc:postgresql://localhost:5432/db_ead_auth_user
-    username: postgres
-    password: ${PASSWORD_POSTGRES}
-  jpa:
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        show_sql: true
-  # RabbitMQ
-  rabbitmq:
-    addresses: ${RABBITMQ_ADDRESSES}
-
-# Log
-logging:
-  level:
-    com.ead: TRACE
-    root: INFO
-    org.springframework.web: DEBUG
-    org.hibernate: INFO
-
-# Eureka server
-eureka:
-  instance:
-    hostname: localhost
-  client:
-    service-url:
-      default-zone: http://localhost:8761/eureka
-
-# Circuit breaker
-resilience4j:
-  circuitbreaker:
-    instances:
-      circuitbreakerInstance:
-        slidingWindowSize: 30
-        permittedNumberOfCallsInHalfOpenState: 2
-        slidingWindowType: TIME_BASED
-        minimumNumberOfCalls: 2
-        waitDurationInOpenState: 30s
-        failureRateThreshold: 80
-  retry:
-    instances:
-      retryInstance:
-        maxAttempts: 3
-        waitDuration: 5s
-
-# Properties
-ead:
-  api:
-    url:
-      courses: http://ead-course-api/ead-course
-    path:
-      courses: /courses
-      users: /users
-  broker:
-      exchange:
-        userEvent: ead.userevent
+  config:
+    import: 'configserver:'
+  cloud:
+    config:
+      discovery:
+        serviceId: ead-config-server
