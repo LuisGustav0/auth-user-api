@@ -1,6 +1,8 @@
 package com.ead.clients.courseapi;
 
 import com.ead.model.response.PageableCourseResponse;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,6 +15,7 @@ import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -56,6 +59,8 @@ public class PageableCourseClientApi {
         return params;
     }
 
+    //    @Retry(name = "retryInstance", fallbackMethod = "onFallback")
+    @CircuitBreaker(name = "circuitbreakerInstance")
     public PageableCourseResponse call(final UUID userId, final Pageable pageable) {
         final String url = this.getUrlTemplate();
         final Map<String, Object> params = this.getQueryParams(userId, pageable);
@@ -64,7 +69,8 @@ public class PageableCourseClientApi {
 
         try {
             final ParameterizedTypeReference<PageableCourseResponse> responseType =
-                    new ParameterizedTypeReference<>() {};
+                    new ParameterizedTypeReference<>() {
+                    };
 
             final ResponseEntity<PageableCourseResponse> pageableResult =
                     this.restTemplate.exchange(url, HttpMethod.GET, null, responseType, params);
@@ -75,5 +81,17 @@ public class PageableCourseClientApi {
         }
 
         return null;
+    }
+
+    public PageableCourseResponse onFallback(final UUID userId, Pageable pageable, Throwable t) {
+        log.error("Inside fallbackMethod, cause - {}", t.toString());
+
+        return PageableCourseResponse.builder()
+                                     .pageNumber(0)
+                                     .pageSize(0)
+                                     .totalPages(1)
+                                     .totalElements(0)
+                                     .data(Collections.emptyList())
+                                     .build();
     }
 }
