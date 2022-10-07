@@ -13,7 +13,8 @@ public enum ErrorType {
     PASSWORD_DIFFERENT_CONFIRM_PASSWORD_REQUIRED("Senha e confirmação de senha não são iguais."),
     EMAIL_IS_ALREADY_BEING_USED("E-Mail já esta sendo usado por outro usuário."),
     SUBSCRIPTION_USER_COURSE_AND_EXISTS_ERROR("Inscrição do usuário ja existe nesse curso."),
-    USER_COURSE_BY_COURSE_ID_NOT_FOUND("Curso do usuario não encontrado.");
+    USER_COURSE_BY_COURSE_ID_NOT_FOUND("Curso do usuario não encontrado."),
+    AUTHORITY_NOT_FOUND("Autorização não encontrado.");
 
     private String error;
 

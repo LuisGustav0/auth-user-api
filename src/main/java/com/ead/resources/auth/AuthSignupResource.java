@@ -1,4 +1,4 @@
-package com.ead.resources;
+package com.ead.resources.auth;
 
 import com.ead.model.request.UserCreatedRequest;
 import com.ead.model.response.UserResponse;

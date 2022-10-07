@@ -24,7 +24,7 @@ public class CreateUserService {
     private final ExistsByEmailService existsByEmailService;
     private final PasswordAndConfirmDifferentService passwordValidService;
 
-   private final SaveUserAndPublisherService saveUserAndPublisherService;
+    private final SaveUserAndPublisherService saveUserAndPublisherService;
 
     public UserResponse call(final UserCreatedRequest request) {
         log.debug("UserCreatedService.call Request: {}", request);
