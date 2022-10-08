@@ -19,4 +19,7 @@ public interface UserRepository extends JpaRepository<UserModel, UUID>,
     @EntityGraph(attributePaths = "listAuthority", type = EntityGraph.EntityGraphType.FETCH)
     @Query("SELECT u FROM UserModel u  where upper(u.login) = upper(:login)")
     Optional<UserModel> findByLogin(final String login);
+
+    @EntityGraph(attributePaths = "listAuthority", type = EntityGraph.EntityGraphType.FETCH)
+    Optional<UserModel> findById(final UUID id);
 }
