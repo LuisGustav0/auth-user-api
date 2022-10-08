@@ -2,6 +2,7 @@ package com.ead.config.security.userdetails;
 
 import com.ead.model.AuthorityModel;
 import com.ead.model.UserModel;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,6 +24,7 @@ public class UserDetailsImpl implements UserDetails {
     private UUID id;
     private String fullName;
     private String username;
+    @JsonIgnore
     private String password;
     private String email;
     private Collection<? extends GrantedAuthority> authorities;
