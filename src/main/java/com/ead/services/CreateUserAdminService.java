@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 @Log4j2
 @Service
 @RequiredArgsConstructor
-public class CreateUserService {
+public class CreateUserAdminService {
 
     private final UserModelAssembler userModelAssembler;
     private final UserRegisterRequestAssembler requestAssembler;
@@ -27,13 +27,13 @@ public class CreateUserService {
     private final SaveUserAndPublisherService saveUserAndPublisherService;
 
     public UserResponse call(final UserCreatedRequest request) {
-        log.debug("UserCreatedService.call Request: {}", request);
+        log.debug("CreateUserAdminService.call Request: {}", request);
 
         this.existsByUsernameService.valid(request.getLogin());
         this.existsByEmailService.valid(request.getEmail());
         this.passwordValidService.valid(request.getPassword(), request.getConfirmPassword());
 
-        final UserModel userModel = this.requestAssembler.toUserStudent(request);
+        final UserModel userModel = this.requestAssembler.toUserAdmin(request);
 
         final UserModel userModelSaved = this.saveUserAndPublisherService.call(userModel);
 

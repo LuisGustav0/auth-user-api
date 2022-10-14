@@ -22,8 +22,10 @@ public class UserRegisterRequestAssembler {
 
     private final PasswordEncoder passwordEncoder;
 
-    public UserModel toUserActiveAndStudent(final UserCreatedRequest request) {
-        final AuthorityModel authority = this.authorityByNameOrElseThrowService.call(AuthorityTypeE.ROLE_STUDENT);
+    public UserModel toUser(final UserCreatedRequest request,
+                            final AuthorityTypeE authorityTypeE,
+                            final UserTypeE typeE) {
+        final AuthorityModel authority = this.authorityByNameOrElseThrowService.call(authorityTypeE);
         final String passwordEncrypted = passwordEncoder.encode(request.getPassword());
 
         return UserModel.builder()
@@ -35,10 +37,18 @@ public class UserRegisterRequestAssembler {
                         .cpf(request.getCpf())
                         .imageUrl(request.getImageUrl())
                         .statusE(UserStatusE.ACTIVE)
-                        .typeE(UserTypeE.STUDENT)
+                        .typeE(typeE)
                         .createdAt(OffsetDateTime.now())
                         .updatedAt(OffsetDateTime.now())
                         .listAuthority(Collections.singleton(authority))
                         .build();
+    }
+
+    public UserModel toUserStudent(final UserCreatedRequest request) {
+        return toUser(request, AuthorityTypeE.ROLE_STUDENT, UserTypeE.STUDENT);
+    }
+
+    public UserModel toUserAdmin(final UserCreatedRequest request) {
+        return toUser(request, AuthorityTypeE.ROLE_ADMIN, UserTypeE.STUDENT);
     }
 }
