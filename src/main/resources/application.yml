@@ -1,11 +1,5 @@
 spring:
   application:
     name: ead-auth-user-api
-  config:
-    import: 'configserver:'
-  cloud:
-    config:
-      discovery:
-        serviceId: ead-config-server
-      username: configServer
-      password: ${CONFIG_SERVER_PASSWORD}
+  profiles:
+    active: dev
