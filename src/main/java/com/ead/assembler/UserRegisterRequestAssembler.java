@@ -49,6 +49,6 @@ public class UserRegisterRequestAssembler {
     }
 
     public UserModel toUserAdmin(final UserCreatedRequest request) {
-        return toUser(request, AuthorityTypeE.ROLE_ADMIN, UserTypeE.STUDENT);
+        return toUser(request, AuthorityTypeE.ROLE_ADMIN, UserTypeE.ADMIN);
     }
 }
