@@ -78,13 +78,6 @@
             <version>${jjwt.version}</version>
         </dependency>
 
-        <!-- Glassfish Jaxb -->
-<!--        <dependency>-->
-<!--            <groupId>org.glassfish.jaxb</groupId>-->
-<!--            <artifactId>jaxb-runtime</artifactId>-->
-<!--            <version>${org.glassfish.jaxb.version}</version>-->
-<!--        </dependency>-->
-
         <!-- Spring Framework Actuator -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
