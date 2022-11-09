@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="DEBUG">
-    <Appenders>
-        <Console name="LogToConsole"
-                 target="SYSTEM_OUT">
-            <EcsLayout serviceName="ead-auth-user-api"
-                       serviceVersion="ead-app-version"
-                       serviceEnvironment="ead-app-environment"
-                       serviceNodeName="ead-cluster-node"/>
-        </Console>
-        <File name="LogToFile" fileName="logs/ead-auth-user-api.log">
-            <EcsLayout serviceName="ead-auth-user-api"
-                       serviceVersion="ead-app-version"
-                       serviceEnvironment="ead-app-environment"
-                       serviceNodeName="ead-cluster-node"/>
-        </File>
-    </Appenders>
-    <Loggers>
-        <Root level="info">
-            <AppenderRef ref="LogToFile"/>
-            <AppenderRef ref="LogToConsole"/>
-        </Root>
-    </Loggers>
+<Appenders>
+    <Console name="LogToConsole" target="SYSTEM_OUT">
+        <EcsLayout serviceName="ead-auth-user-api"
+                   serviceVersion="ead-version"
+                   serviceEnvironment="ead-environment"
+                   serviceNodeName="ead-cluster-node"/>
+    </Console>
+    <File name="LogToFile" fileName="logs/ead-auth-user-api.log">
+        <EcsLayout serviceName="ead-auth-user-api"
+                   serviceVersion="ead-version"
+                   serviceEnvironment="ead-environment"
+                   serviceNodeName="ead-cluster-node"/>
+    </File>
+</Appenders>
+<Loggers>
+    <Root level="info">
+        <AppenderRef ref="LogToFile"/>
+        <AppenderRef ref="LogToConsole"/>
+    </Root>
+</Loggers>
 </Configuration>

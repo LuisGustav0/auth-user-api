@@ -26,6 +26,7 @@
         <spring-cloud.version>2021.0.4</spring-cloud.version>
         <jjwt.version>0.9.1</jjwt.version>
         <org.glassfish.jaxb.version>3.0.2</org.glassfish.jaxb.version>
+        <ecs-logging-java.version>1.5.0</ecs-logging-java.version>
     </properties>
 
     <dependencies>
@@ -100,6 +101,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-log4j2</artifactId>
+        </dependency>
+
+        <!-- Elastic Log4j2 -->
+        <dependency>
+            <groupId>co.elastic.logging</groupId>
+            <artifactId>log4j2-ecs-layout</artifactId>
+            <version>${ecs-logging-java.version}</version>
         </dependency>
 
         <!-- Spring Framework Data JPA -->
